@@ -4,6 +4,8 @@ import com.example.blackjack.Model.Carta;
 import com.example.blackjack.Model.CartaInglesa;
 import com.example.blackjack.Model.Palo;
 import com.example.blackjack.View.CartaView;
+import com.example.blackjack.View.MainScreen;
+import com.sun.tools.javac.Main;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,9 +18,7 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        BorderPane root = new BorderPane();
-
-
+        MainScreen root = new MainScreen();
         String css = getClass().getResource("style.css").toExternalForm();
         Scene scene = new Scene(root, 720, 480);
         scene.getStylesheets().add(css);
