@@ -2,15 +2,20 @@ package com.example.blackjack.Controller;
 
 import com.example.blackjack.Model.BlackJack;
 import com.example.blackjack.View.MainScreen;
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.application.Platform;
 
 public class HelloController {
-    private MainScreen mainScreen;
-    private BlackJack blackJack;
+    private MainScreen view;
+    private BlackJack model;
 
-    public HelloController(MainScreen mainScreen, BlackJack blackJack) {
-
+    public HelloController(MainScreen view, BlackJack model) {
+        this.view = view;
+        this.model = model;
+        configurarEventos();
     }
 
+    private void configurarEventos() {
+        view.getBotonIniciarJuego().setOnAction(event -> view.elegirJugadores());
+        view.getBotonSalir().setOnAction(e -> Platform.exit());
+    }
 }

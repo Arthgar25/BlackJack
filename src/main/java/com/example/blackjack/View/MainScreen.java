@@ -36,30 +36,10 @@ public class MainScreen extends BorderPane {
 
     public void menuPrincipal() {
         botonesDelMenu = new VBox();
-        botonIniciarJuego = new QuickButton("Iniciar Juego") {
-            @Override
-            protected void addAction() {
-                elegirJugadores();
-            }
-        };
-        botonReglas = new QuickButton("Reglas") {
-            @Override
-            protected void addAction() {
-
-            }
-        };
-        botonConfiguracion = new QuickButton("Configuracion") {
-            @Override
-            protected void addAction() {
-
-            }
-        };
-        botonSalir = new QuickButton("Salir") {
-            @Override
-            protected void addAction() {
-
-            }
-        };
+        botonIniciarJuego = new QuickButton("Iniciar Juego");
+        botonReglas = new QuickButton("Reglas");
+        botonConfiguracion = new QuickButton("Configuracion");
+        botonSalir = new QuickButton("Salir");
         botonesDelMenu.setAlignment(Pos.CENTER);
         botonesDelMenu.setSpacing(10);
         botonesDelMenu.getChildren().addAll(botonIniciarJuego,botonReglas,botonConfiguracion,botonSalir);
@@ -75,24 +55,9 @@ public class MainScreen extends BorderPane {
         botonConfiguracion.setVisible(false);
         botonSalir.setVisible(false);
 
-        jugadores2 = new QuickButton("2 Jugadores") {
-            @Override
-            protected void addAction() {
-
-            }
-        };
-        jugadores3 = new QuickButton("3 Jugadores") {
-            @Override
-            protected void addAction() {
-
-            }
-        };
-        jugadores4 = new QuickButton("4 Jugadores") {
-            @Override
-            protected void addAction() {
-
-            }
-        };
+        jugadores2 = new QuickButton("2 Jugadores");
+        jugadores3 = new QuickButton("3 Jugadores");
+        jugadores4 = new QuickButton("4 Jugadores");
 
         botonesDelMenu.setAlignment(Pos.CENTER);
         botonesDelMenu.setSpacing(10);
@@ -101,5 +66,14 @@ public class MainScreen extends BorderPane {
 
     public QuickButton getBotonIniciarJuego() {
         return botonIniciarJuego;
+    }
+    public QuickButton getBotonReglas() {
+        return botonReglas;
+    }
+    public QuickButton getBotonConfiguracion() {
+        return botonConfiguracion;
+    }
+    public QuickButton getBotonSalir() {
+        return botonSalir;
     }
 }

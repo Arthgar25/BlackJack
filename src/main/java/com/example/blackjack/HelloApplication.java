@@ -14,7 +14,7 @@ public class HelloApplication extends Application {
         MainScreen view = new MainScreen();
         BlackJack model = new BlackJack();
         HelloController controller = new HelloController(view, model);
-        
+
         Scene scene = new Scene(view, 720, 480);
         String css = getClass().getResource("style.css").toExternalForm();
         scene.getStylesheets().add(css);
