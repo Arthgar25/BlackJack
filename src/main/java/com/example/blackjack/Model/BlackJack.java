@@ -22,5 +22,10 @@ public class BlackJack {
         }
     }
 
+    public void inicializarJugadores(int numJugadores){
+        for(int i = 0; i < numJugadores; i++){
+            jugadores.add(new Jugador());
+        }
+    }
 
 }

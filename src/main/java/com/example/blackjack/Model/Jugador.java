@@ -4,6 +4,7 @@ import com.example.blackjack.View.MainScreen;
 import java.util.ArrayList;
 
 public class Jugador {
+    private String nombre;
     private ArrayList<Carta> mano = new ArrayList<Carta>();
     private int puntaje;
     private boolean jugando = false;
@@ -11,6 +12,7 @@ public class Jugador {
     public Jugador(){
         jugando = true;
         puntaje = 0;
+        nombre = "Jugador";
     }
 
     public void agregarCarta(Carta carta){
@@ -38,5 +40,12 @@ public class Jugador {
     }
     public void setJugando(boolean jugando) {
         this.jugando = jugando;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 }

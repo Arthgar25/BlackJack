@@ -17,5 +17,15 @@ public class HelloController {
     private void configurarEventos() {
         view.getBotonIniciarJuego().setOnAction(event -> view.elegirJugadores());
         view.getBotonSalir().setOnAction(e -> Platform.exit());
+
+        view.getJugadores2().setOnAction(event -> iniciarJuego(2));
+        view.getJugadores3().setOnAction(event -> iniciarJuego(3));
+        view.getJugadores4().setOnAction(event -> iniciarJuego(4));
+    }
+
+    private void iniciarJuego(int numJugadores){
+        model.inicializarJugadores(numJugadores);
+        model.repartir();
+        view.mostrarTablero(numJugadores);
     }
 }
