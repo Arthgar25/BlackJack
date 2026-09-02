@@ -15,15 +15,12 @@
     -fx-font-size: 56px;
     -fx-font-weight: bold;
 
-    /* Metallic Gold Text Fill */
     -fx-text-fill: linear-gradient(
             to bottom,
-            #ffe89c 0%,   /* Bright highlight top */
-            #d4af37 45%,  /* Classic metallic gold center */
-            #aa820a 100%  /* Deep bronze/gold shadow bottom */
+            #ffe89c 0%,
+            #d4af37 45%,
+            #aa820a 100%
     );
-
-    /* Multi-layered Drop Shadow: Gives a 3D bevel effect and glow */
     -fx-effect: dropshadow(
             three-pass-box,
             rgba(0, 0, 0, 0.9),

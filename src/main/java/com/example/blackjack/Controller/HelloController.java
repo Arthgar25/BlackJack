@@ -1,14 +1,16 @@
 package com.example.blackjack.Controller;
 
+import com.example.blackjack.Model.BlackJack;
+import com.example.blackjack.View.MainScreen;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 public class HelloController {
-    @FXML
-    private Label welcomeText;
+    private MainScreen mainScreen;
+    private BlackJack blackJack;
 
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    public HelloController(MainScreen mainScreen, BlackJack blackJack) {
+
     }
+
 }
