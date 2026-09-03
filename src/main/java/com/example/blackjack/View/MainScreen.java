@@ -24,7 +24,7 @@ public class MainScreen extends BorderPane {
 
     //Tablero
     private HBox contenedorJugadores;
-    private ContenedorJugador casa;
+    private Contenedor casa;
 
 
     // Configuracion
@@ -55,7 +55,7 @@ public class MainScreen extends BorderPane {
         contenedorJugadores = new HBox(20);
         contenedorJugadores.setAlignment(Pos.CENTER);
 
-        casa = new ContenedorJugador(new Jugador("Casa"));
+        casa = new Contenedor(new Jugador("Casa"));
     }
 
     public void menuPrincipal() {
