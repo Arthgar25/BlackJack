@@ -2,7 +2,6 @@ package com.example.blackjack.View;
 
 import com.example.blackjack.Model.Jugador;
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -36,7 +35,7 @@ public class MainScreen extends BorderPane {
         setAlignment(tituloPrincipal, Pos.CENTER);
         setTop(tituloPrincipal);
         inicializarComponentes();
-        menuPrincipal();
+        mostrarTablero(2);
 
         getStyleClass().add("root");
     }
@@ -56,7 +55,7 @@ public class MainScreen extends BorderPane {
         contenedorJugadores = new HBox(20);
         contenedorJugadores.setAlignment(Pos.CENTER);
 
-        casa = new ContenedorJugador(new Jugador());
+        casa = new ContenedorJugador(new Jugador("Casa"));
     }
 
     public void menuPrincipal() {
@@ -95,10 +94,10 @@ public class MainScreen extends BorderPane {
         this.setCenter(null);
         setCenter(casa);
         for(int i = 1; i <= cantidadDeJugadores; i++){
-            ContenedorJugador contenedorJugador = new ContenedorJugador(new Jugador());
+            ContenedorJugador contenedorJugador = new ContenedorJugador(new Jugador(""));
             contenedorJugadores.getChildren().add(contenedorJugador);
         }
-        setBottom(contenedorJugadores);
+        this.setBottom(contenedorJugadores);
     }
 
     public QuickButton getBotonIniciarJuego() {return botonIniciarJuego;}

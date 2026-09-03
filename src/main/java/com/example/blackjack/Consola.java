@@ -6,8 +6,8 @@ import com.example.blackjack.Model.Mazo;
 
 public class Consola {
     public static void main(String[] args) {
-        Jugador jugador = new Jugador();
-        Jugador casa = new Jugador();
+        Jugador jugador = new Jugador("");
+        Jugador casa = new Jugador("Casa");
         Mazo mazo = new Mazo();
 
         while(true){

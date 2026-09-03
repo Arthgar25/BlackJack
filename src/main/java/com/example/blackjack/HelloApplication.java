@@ -19,6 +19,7 @@ public class HelloApplication extends Application {
         String css = getClass().getResource("style.css").toExternalForm();
         scene.getStylesheets().add(css);
 
+        stage.setFullScreen(true);
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
