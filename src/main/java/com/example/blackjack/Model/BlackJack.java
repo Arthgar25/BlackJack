@@ -91,7 +91,8 @@ public class BlackJack {
         return turnoActualIndex >= jugadores.size();
     }
     public void inicializarJugadores(int numJugadores){
-        for(int i = 0; i < numJugadores; i++){
+        jugadores.clear();
+        for(int i = 1; i <= numJugadores; i++){
             jugadores.add(new Jugador("Jugador " + i));
         }
         casa.reiniciarMano();
@@ -100,5 +101,8 @@ public class BlackJack {
 
     public Jugador getCasa(){
         return casa;
+    }
+    public ArrayList<Jugador> getJugadores(){
+        return jugadores;
     }
 }

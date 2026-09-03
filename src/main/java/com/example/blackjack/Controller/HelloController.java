@@ -26,6 +26,6 @@ public class HelloController {
     private void iniciarJuego(int numJugadores){
         model.inicializarJugadores(numJugadores);
         model.repartir();
-        view.mostrarTablero(numJugadores);
+        view.mostrarTablero(model.getJugadores(), model.getCasa());
     }
 }

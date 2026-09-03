@@ -1,10 +1,13 @@
 package com.example.blackjack.View;
 
+import com.example.blackjack.Model.Carta;
 import com.example.blackjack.Model.Jugador;
 import javafx.geometry.Pos;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
+import java.util.ArrayList;
 
 public class MainScreen extends BorderPane {
     private TituloPrincipal tituloPrincipal;
@@ -35,18 +38,19 @@ public class MainScreen extends BorderPane {
         setAlignment(tituloPrincipal, Pos.CENTER);
         setTop(tituloPrincipal);
         inicializarComponentes();
-        mostrarTablero(2);
+        menuPrincipal();
 
         getStyleClass().add("root");
     }
 
     private void inicializarComponentes() {
-        botonesDelMenu = new VBox();
+        botonesDelMenu = new VBox(10);
         botonesDelMenu.setAlignment(Pos.CENTER);
         botonIniciarJuego = new QuickButton("Iniciar Juego");
         botonReglas = new QuickButton("Reglas");
         botonConfiguracion = new QuickButton("Configuración");
         botonSalir = new QuickButton("Salir");
+        cuantosJugadores = new Font("Elige los jugadores");
 
         jugadores2 = new QuickButton("2 Jugadores");
         jugadores3 = new QuickButton("3 Jugadores");
@@ -59,42 +63,30 @@ public class MainScreen extends BorderPane {
     }
 
     public void menuPrincipal() {
-
-        botonIniciarJuego = new QuickButton("Iniciar Juego");
-        botonReglas = new QuickButton("Reglas");
-        botonConfiguracion = new QuickButton("Configuracion");
-        botonSalir = new QuickButton("Salir");
-        botonesDelMenu.setSpacing(10);
+        botonesDelMenu.getChildren().clear();
         botonesDelMenu.getChildren().addAll(botonIniciarJuego,botonReglas,botonConfiguracion,botonSalir);
-        setAlignment(tituloPrincipal, Pos.CENTER);
-        setTop(tituloPrincipal);
         setCenter(botonesDelMenu);
     }
 
     public void elegirJugadores() {
         botonesDelMenu.getChildren().clear();
-        botonIniciarJuego.setVisible(false);
-        botonReglas.setVisible(false);
-        botonConfiguracion.setVisible(false);
-        botonSalir.setVisible(false);
-
-        cuantosJugadores = new Font("Elige los Jugadores");
-        cuantosJugadores.getStyleClass().add("font");
-
-        jugadores2 = new QuickButton("2 Jugadores");
-        jugadores3 = new QuickButton("3 Jugadores");
-        jugadores4 = new QuickButton("4 Jugadores");
-
-        botonesDelMenu.setAlignment(Pos.CENTER);
-        botonesDelMenu.setSpacing(10);
         botonesDelMenu.getChildren().addAll(cuantosJugadores, jugadores2, jugadores3, jugadores4);
+        System.out.println("test");
     }
 
-    public void mostrarTablero(int cantidadDeJugadores){
+    public void mostrarTablero(ArrayList<Jugador> jugadores, Jugador casaModel) {
         this.setCenter(null);
+        casa = new Contenedor(casaModel);
+        for(Carta carta : casaModel.getMano()){
+            casa.agregarCartas(new CartaView(carta));
+        }
         setCenter(casa);
-        for(int i = 1; i <= cantidadDeJugadores; i++){
-            ContenedorJugador contenedorJugador = new ContenedorJugador(new Jugador(""));
+        contenedorJugadores.getChildren().clear();
+        for(Jugador jugador : jugadores) {
+            ContenedorJugador contenedorJugador = new ContenedorJugador(jugador);
+            for(Carta carta : jugador.getMano()){
+                contenedorJugador.agregarCartas(new CartaView(carta));
+            }
             contenedorJugadores.getChildren().add(contenedorJugador);
         }
         this.setBottom(contenedorJugadores);
