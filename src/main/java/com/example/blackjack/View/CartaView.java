@@ -15,19 +15,54 @@ public class CartaView extends StackPane {
 
     public CartaView(Carta carta) {
         this.carta = carta;
-
-        InputStream is = getClass().getResourceAsStream("/2_of_hearts.png");
+        String path = obtenerRutaImagen(carta);
+        InputStream is = getClass().getResourceAsStream(path);
 
         if (is == null) {
-            throw new IllegalArgumentException("Resource not found: /2_of_hearts.png");
+            System.err.println("Imagen no encontrada: " + path);
+            is = getClass().getResourceAsStream("/2_of_hearts.png");
         }
 
-        imagen = new Image(is);
-        imagenCarta = new ImageView(imagen);
-        imagenCarta.setFitHeight(120);
-        imagenCarta.setFitWidth(120);
-        imagenCarta.setPreserveRatio(true);
+        if(is != null) {
+            imagen = new Image(is);
+            imagenCarta = new ImageView(imagen);
+            imagenCarta.setFitHeight(120);
+            imagenCarta.setFitWidth(120);
+            imagenCarta.setPreserveRatio(true);
+            getChildren().add(imagenCarta);
+        }
 
-        getChildren().add(imagenCarta);
+    }
+    private String obtenerRutaImagen(Carta carta) {
+        String valor;
+        String palo;
+        boolean face = false;
+        switch(carta.getValor()){
+            case 14:
+                valor = "ace";
+                break;
+            case 11:
+                valor = "jack";
+                face = true;
+                break;
+            case 12:
+                valor = "queen";
+                face = true;
+                break;
+            case 13:
+                valor = "king";
+                face = true;
+                break;
+            default:
+                valor = String.valueOf(carta.getValor());
+                break;
+        }
+        if(face){
+            palo = carta.getPalo().name().toLowerCase() + "2";
+        }else{
+            palo = carta.getPalo().name().toLowerCase();
+        }
+
+        return "/" + valor + "_of_" + palo + ".png";
     }
 }
