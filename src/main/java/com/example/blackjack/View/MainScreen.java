@@ -91,7 +91,7 @@ public class MainScreen extends BorderPane {
 
     public void menuPrincipal() {
         setBottom(null);
-        //ocultarBotonesFinJuego();
+        ocultarBotonesFinJuego();
         botonesDelMenu.getChildren().clear();
         botonesDelMenu.getChildren().addAll(botonIniciarJuego, botonSalir);
         setCenter(botonesDelMenu);

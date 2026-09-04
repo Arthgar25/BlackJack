@@ -39,7 +39,7 @@ public class Jugador {
     public boolean esBust(){return getPuntaje() > 21;}
     public void reiniciarMano(){
         mano.clear();
-        jugando = true;
+        setPuntaje(0);
     }
     public void agregarCarta(Carta carta){
         mano.add(carta);

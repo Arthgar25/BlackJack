@@ -116,4 +116,7 @@ public class BlackJack {
     public ArrayList<Jugador> getJugadores(){
         return jugadores;
     }
+    public Mazo getMazo(){
+        return mazo;
+    }
 }

@@ -1,0 +1,203 @@
+@startuml
+enum com.example.blackjack.Model.Palo {
++  CLUBS
++  DIAMONDS
++  HEARTS
++  SPADES
+- int peso
+- String figura
+- String color
++ int getPeso()
++ String getFigura()
++ String getColor()
+}
+
+
+class com.example.blackjack.View.MainScreen {
+- TituloPrincipal tituloPrincipal
+- Font turnoActual
+- VBox cabecera
+- VBox botonesDelMenu
+- QuickButton botonIniciarJuego
+- QuickButton botonReglas
+- QuickButton botonConfiguracion
+- QuickButton botonSalir
+- Font cuantosJugadores
+- QuickButton jugadores2
+- QuickButton jugadores3
+- QuickButton jugadores4
+- HBox hboxJugadores
+- Contenedor casa
+- ArrayList<ContenedorJugador> arrayListContenedores
+- HBox botonesFinDeJuego
+- QuickButton jugarDeNuevo
+- QuickButton botonMenuPrincipal
++ void actualizarTurno(String)
+- void inicializarComponentes()
++ void menuPrincipal()
++ void mostrarBotonesFinJuego()
++ void ocultarBotonesFinJuego()
++ void elegirJugadores()
++ void mostrarTablero(ArrayList<Jugador>,Jugador)
++ ArrayList<ContenedorJugador> getArrayListContenedores()
++ QuickButton getBotonIniciarJuego()
++ QuickButton getBotonReglas()
++ QuickButton getBotonConfiguracion()
++ QuickButton getBotonSalir()
++ QuickButton getJugadores2()
++ QuickButton getJugadores3()
++ QuickButton getJugadores4()
++ Contenedor getCasa()
++ QuickButton getBotonMenuPrincipal()
++ QuickButton getJugarDeNuevo()
+}
+
+
+class com.example.blackjack.View.QuickButton {
+}
+class com.example.blackjack.Consola {
++ {static} void main(String[])
++ {static} void iniciarJuego(Jugador,Jugador,Mazo)
+}
+
+class com.example.blackjack.Controller.HelloController {
+- MainScreen view
+- BlackJack model
+- void configurarEventos()
+- void reiniciarRonda()
+- void iniciarJuego(int)
+- void actualizarIndicadorTurno()
+- void evaluarYMostrarResultados()
+- void gestionarBotonesPorturno(Jugador)
+- void deshabilitarTodosLosBotones()
+- void configurarAccionesJugadores()
+}
+
+
+class com.example.blackjack.View.TituloPrincipal {
+}
+class com.example.blackjack.Model.CartaInglesa {
++ int compareTo(Carta)
+}
+
+class com.example.blackjack.Launcher {
++ {static} void main(String[])
+}
+
+class com.example.blackjack.View.ContenedorJugador {
+- HBox opciones
+- QuickButton hit
+- QuickButton stay
++ QuickButton getHitButton()
++ QuickButton getStayButton()
+}
+
+
+class com.example.blackjack.HelloApplication {
++ void start(Stage)
+}
+
+class com.example.blackjack.Model.BlackJack {
+- ArrayList<Jugador> jugadores
+- Jugador casa
+- Mazo mazo
+- int turnoActualIndex
++ void repartir()
++ CartaInglesa pedirCarta()
++ void plantarse()
+- void avanzarTurno()
++ void jugarCasa()
++ String evaluarResultado(Jugador)
++ Jugador getJugadorActual()
++ boolean turnoDelaCasa()
++ void inicializarJugadores(int)
++ void reiniciarRonda()
++ Jugador getCasa()
++ ArrayList<Jugador> getJugadores()
+}
+
+
+class com.example.blackjack.View.CartaView {
+- Carta carta
+- Image imagen
+- ImageView imagenCarta
+- String obtenerRutaImagen(Carta)
+}
+
+
+class com.example.blackjack.Model.Mazo {
+- ArrayList<CartaInglesa> cartas
++ ArrayList<CartaInglesa> getCartas()
++ CartaInglesa obtenerUnaCarta()
+- void mezclar()
+- void llenar()
++ void ordenar()
++ String toString()
+}
+
+
+class com.example.blackjack.View.Font {
+}
+abstract class com.example.blackjack.Model.Carta {
+- int valor
+# Palo palo
+- String color
+- int valorBajo
+- boolean faceup
++ void makeFaceDown()
++ void makeFaceUp()
++ boolean isFaceup()
++ String toString()
++ boolean tieneElMismoValor(Carta)
++ boolean tieneElMismoPalo(Palo)
++ boolean esLaSiguiente(Carta)
++ int getValor()
++ Palo getPalo()
++ String getColor()
++ int getValorBajo()
+}
+
+
+class com.example.blackjack.Model.Jugador {
+- String nombre
+- ArrayList<Carta> mano
+- int puntaje
+- boolean jugando
++ int getPuntaje()
++ boolean esBust()
++ void reiniciarMano()
++ void agregarCarta(Carta)
++ ArrayList<Carta> getMano()
++ void setMano(ArrayList<Carta>)
++ void setPuntaje(int)
++ boolean isJugando()
++ void setJugando(boolean)
++ String getNombre()
++ void setNombre(String)
+}
+
+
+class com.example.blackjack.View.Contenedor {
+- Font nombreJugador
+- Font puntajeJugador
+- HBox cartas
++ void actualizarManoYCartas(Jugador)
++ void mostrarResultadoFinal(int,String)
++ void agregarCartas(CartaView)
++ void actualizarPuntaje(int)
+}
+
+
+
+
+javafx.scene.layout.BorderPane <|-- com.example.blackjack.View.MainScreen
+javafx.scene.control.Button <|-- com.example.blackjack.View.QuickButton
+javafx.scene.control.Label <|-- com.example.blackjack.View.TituloPrincipal
+com.example.blackjack.Model.Carta <|-- com.example.blackjack.Model.CartaInglesa
+com.example.blackjack.View.Contenedor <|-- com.example.blackjack.View.ContenedorJugador
+javafx.application.Application <|-- com.example.blackjack.HelloApplication
+javafx.scene.layout.StackPane <|-- com.example.blackjack.View.CartaView
+javafx.scene.control.Label <|-- com.example.blackjack.View.Font
+com.example.blackjack.Model.Comparable <|.. com.example.blackjack.Model.Carta
+javafx.scene.layout.VBox <|-- com.example.blackjack.View.Contenedor
+@enduml

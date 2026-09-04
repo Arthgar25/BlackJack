@@ -1,0 +1,53 @@
+@startuml
+enum com.example.blackjack.Model.Palo {
++  CLUBS
++  DIAMONDS
++  HEARTS
++  SPADES
+}
+
+class com.example.blackjack.View.MainScreen {
+}
+class com.example.blackjack.View.QuickButton {
+}
+class com.example.blackjack.Consola {
+}
+class com.example.blackjack.Controller.HelloController {
+}
+class com.example.blackjack.View.TituloPrincipal {
+}
+class com.example.blackjack.Model.CartaInglesa {
+}
+class com.example.blackjack.Launcher {
+}
+class com.example.blackjack.View.ContenedorJugador {
+}
+class com.example.blackjack.HelloApplication {
+}
+class com.example.blackjack.Model.BlackJack {
+}
+class com.example.blackjack.View.CartaView {
+}
+class com.example.blackjack.Model.Mazo {
+}
+class com.example.blackjack.View.Font {
+}
+abstract class com.example.blackjack.Model.Carta {
+}
+class com.example.blackjack.Model.Jugador {
+}
+class com.example.blackjack.View.Contenedor {
+}
+
+
+javafx.scene.layout.BorderPane <|-- com.example.blackjack.View.MainScreen
+javafx.scene.control.Button <|-- com.example.blackjack.View.QuickButton
+javafx.scene.control.Label <|-- com.example.blackjack.View.TituloPrincipal
+com.example.blackjack.Model.Carta <|-- com.example.blackjack.Model.CartaInglesa
+com.example.blackjack.View.Contenedor <|-- com.example.blackjack.View.ContenedorJugador
+javafx.application.Application <|-- com.example.blackjack.HelloApplication
+javafx.scene.layout.StackPane <|-- com.example.blackjack.View.CartaView
+javafx.scene.control.Label <|-- com.example.blackjack.View.Font
+com.example.blackjack.Model.Comparable <|.. com.example.blackjack.Model.Carta
+javafx.scene.layout.VBox <|-- com.example.blackjack.View.Contenedor
+@enduml

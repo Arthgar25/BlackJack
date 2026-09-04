@@ -34,10 +34,14 @@ public class HelloController {
     }
 
     private void reiniciarRonda() {
+        model.getMazo().getCartas().clear();
+        model.getMazo().llenar();
+        model.getMazo().mezclar();
         model.reiniciarRonda();
         view.mostrarTablero(model.getJugadores(), model.getCasa());
         actualizarIndicadorTurno();
         configurarAccionesJugadores();
+        iniciarJuego(model.getJugadores().size());
     }
 
     private void iniciarJuego(int numJugadores){

@@ -31,11 +31,11 @@ public class Mazo {
         return null;
     }
 
-    private void mezclar() {
+    public void mezclar() {
         Collections.shuffle(cartas);
     }
 
-    private void llenar() {
+    public void llenar() {
         for (int i = 2; i <=14 ; i++) {
             for (Palo palo : Palo.values()) {
                 CartaInglesa c = new CartaInglesa(i,palo, palo.getColor());
