@@ -15,7 +15,7 @@ public class Contenedor extends VBox {
 
 
     public Contenedor(Jugador jugador) {
-        this.setSpacing(50);
+        this.setSpacing(20);
         this.setAlignment(Pos.CENTER);
         this.setPadding(new Insets(10,20,50,20));
 

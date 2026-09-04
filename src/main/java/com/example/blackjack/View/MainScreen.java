@@ -2,6 +2,7 @@ package com.example.blackjack.View;
 
 import com.example.blackjack.Model.Carta;
 import com.example.blackjack.Model.Jugador;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -34,7 +35,7 @@ public class MainScreen extends BorderPane {
 
 
     // Post-Game
-    private VBox botonesFinDeJuego;
+    private HBox botonesFinDeJuego;
     private QuickButton jugarDeNuevo;
     private QuickButton botonMenuPrincipal;
 
@@ -68,8 +69,10 @@ public class MainScreen extends BorderPane {
         cuantosJugadores = new Font("Elige los jugadores");
         cuantosJugadores.getStyleClass().add("font-white");
 
-        botonesFinDeJuego = new VBox(10);
+        botonesFinDeJuego = new HBox(10);
         botonesFinDeJuego.setAlignment(Pos.CENTER);
+        botonesFinDeJuego.setPadding(new Insets(10, 0, 20, 0));
+        botonesFinDeJuego.setSpacing(10);
 
         jugarDeNuevo = new QuickButton("Jugar de Nuevo");
         botonMenuPrincipal = new QuickButton("Menu Principal");

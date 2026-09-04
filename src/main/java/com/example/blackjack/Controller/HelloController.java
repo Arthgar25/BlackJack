@@ -28,6 +28,16 @@ public class HelloController {
         view.getJugadores2().setOnAction(event -> iniciarJuego(2));
         view.getJugadores3().setOnAction(event -> iniciarJuego(3));
         view.getJugadores4().setOnAction(event -> iniciarJuego(4));
+
+        view.getJugarDeNuevo().setOnAction(event -> reiniciarRonda());
+        view.getBotonMenuPrincipal().setOnAction(event -> view.menuPrincipal());
+    }
+
+    private void reiniciarRonda() {
+        model.reiniciarRonda();
+        view.mostrarTablero(model.getJugadores(), model.getCasa());
+        actualizarIndicadorTurno();
+        configurarAccionesJugadores();
     }
 
     private void iniciarJuego(int numJugadores){
@@ -46,6 +56,7 @@ public class HelloController {
             view.actualizarTurno("Turno de: La Casa - Juego Terminado!");
             deshabilitarTodosLosBotones();
             evaluarYMostrarResultados();
+            view.mostrarBotonesFinJuego();
         } else{
             view.getCasa().actualizarPuntaje(model.getCasa().getPuntaje());
             Jugador actual = model.getJugadorActual();

@@ -100,6 +100,16 @@ public class BlackJack {
         turnoActualIndex = 0;
     }
 
+    public void reiniciarRonda(){
+        for(Jugador jugador : jugadores){
+            jugador.reiniciarMano();
+            jugador.setJugando(true);
+        }
+        casa.reiniciarMano();
+        casa.setJugando(true);
+        repartir();
+    }
+
     public Jugador getCasa(){
         return casa;
     }
