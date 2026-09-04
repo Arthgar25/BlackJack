@@ -11,6 +11,8 @@ import java.util.ArrayList;
 
 public class MainScreen extends BorderPane {
     private TituloPrincipal tituloPrincipal;
+    private Font turnoActual;
+    private VBox cabecera;
     // Menu principal
     private VBox botonesDelMenu;
     private QuickButton botonIniciarJuego;
@@ -26,8 +28,9 @@ public class MainScreen extends BorderPane {
     private QuickButton jugadores4;
 
     //Tablero
-    private HBox contenedorJugadores;
+    private HBox hboxJugadores;
     private Contenedor casa;
+    private ArrayList<ContenedorJugador> arrayListContenedores = new ArrayList<>();
 
 
     // Configuracion
@@ -35,12 +38,21 @@ public class MainScreen extends BorderPane {
 
     public MainScreen() {
         tituloPrincipal = new TituloPrincipal("BlackJack");
-        setAlignment(tituloPrincipal, Pos.CENTER);
-        setTop(tituloPrincipal);
+        turnoActual = new Font("");
+        turnoActual.getStyleClass().add("font-white");
+
+        cabecera = new VBox(10, tituloPrincipal, turnoActual);
+        cabecera.setAlignment(Pos.CENTER);
+
+        setTop(cabecera);
         inicializarComponentes();
         menuPrincipal();
 
         getStyleClass().add("root");
+    }
+
+    public void actualizarTurno(String texto){
+        turnoActual.setText(texto);
     }
 
     private void inicializarComponentes() {
@@ -51,13 +63,14 @@ public class MainScreen extends BorderPane {
         botonConfiguracion = new QuickButton("Configuración");
         botonSalir = new QuickButton("Salir");
         cuantosJugadores = new Font("Elige los jugadores");
+        cuantosJugadores.getStyleClass().add("font-white");
 
         jugadores2 = new QuickButton("2 Jugadores");
         jugadores3 = new QuickButton("3 Jugadores");
         jugadores4 = new QuickButton("4 Jugadores");
 
-        contenedorJugadores = new HBox(20);
-        contenedorJugadores.setAlignment(Pos.CENTER);
+        hboxJugadores = new HBox(20);
+        hboxJugadores.setAlignment(Pos.CENTER);
 
         casa = new Contenedor(new Jugador("Casa"));
     }
@@ -76,22 +89,31 @@ public class MainScreen extends BorderPane {
 
     public void mostrarTablero(ArrayList<Jugador> jugadores, Jugador casaModel) {
         this.setCenter(null);
+
         casa = new Contenedor(casaModel);
         for(Carta carta : casaModel.getMano()){
             casa.agregarCartas(new CartaView(carta));
         }
         setCenter(casa);
-        contenedorJugadores.getChildren().clear();
+
+        hboxJugadores.getChildren().clear();
+        arrayListContenedores.clear();
+
         for(Jugador jugador : jugadores) {
             ContenedorJugador contenedorJugador = new ContenedorJugador(jugador);
             for(Carta carta : jugador.getMano()){
                 contenedorJugador.agregarCartas(new CartaView(carta));
             }
-            contenedorJugadores.getChildren().add(contenedorJugador);
+            contenedorJugador.actualizarPuntaje(jugador.getPuntaje());
+            arrayListContenedores.add(contenedorJugador);
+            hboxJugadores.getChildren().add(contenedorJugador);
         }
-        this.setBottom(contenedorJugadores);
+        this.setBottom(hboxJugadores);
     }
 
+    public ArrayList<ContenedorJugador> getArrayListContenedores() {
+        return arrayListContenedores;
+    }
     public QuickButton getBotonIniciarJuego() {return botonIniciarJuego;}
     public QuickButton getBotonReglas() {return botonReglas;}
     public QuickButton getBotonConfiguracion() {return botonConfiguracion;}
@@ -99,4 +121,5 @@ public class MainScreen extends BorderPane {
     public QuickButton getJugadores2() {return jugadores2;}
     public QuickButton getJugadores3() {return jugadores3;}
     public QuickButton getJugadores4() {return jugadores4;}
+    public Contenedor getCasa() {return casa;}
 }

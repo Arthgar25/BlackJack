@@ -9,7 +9,7 @@ import javafx.scene.layout.VBox;
 
 public class Contenedor extends VBox {
     private Font nombreJugador;
-    private Label puntajeJugador;
+    private Font puntajeJugador;
     private HBox cartas;
 
 
@@ -19,12 +19,14 @@ public class Contenedor extends VBox {
         this.setPadding(new Insets(10,20,50,20));
 
         nombreJugador = new Font(jugador.getNombre());
-        puntajeJugador = new Label("Puntos: 0");
+        nombreJugador.getStyleClass().add("font-white");
+        puntajeJugador = new Font("Puntos: 0");
+        puntajeJugador.getStyleClass().add("font-white");
 
         cartas = new HBox(5);
         cartas.setAlignment(Pos.CENTER);
 
-        this.getChildren().addAll(nombreJugador, cartas);
+        this.getChildren().addAll(nombreJugador,puntajeJugador, cartas);
     }
 
 

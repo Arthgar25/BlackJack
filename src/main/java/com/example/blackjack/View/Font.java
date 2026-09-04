@@ -6,5 +6,6 @@ public class Font extends Label {
     public Font(String texto) {
         super(texto);
         this.getStyleClass().add("font");
+
     }
 }

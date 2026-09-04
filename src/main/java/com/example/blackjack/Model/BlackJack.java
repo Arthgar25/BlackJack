@@ -26,6 +26,7 @@ public class BlackJack {
                 jugador.agregarCarta(mazo.obtenerUnaCarta());
             }
         }
+
         turnoActualIndex = 0;
     }
 
@@ -42,7 +43,7 @@ public class BlackJack {
         return null;
     }
 
-    private void plantarse(){
+    public void plantarse(){
         Jugador jugadorActual = getJugadorActual();
         if(jugadorActual != null){
             jugadorActual.setJugando(false);

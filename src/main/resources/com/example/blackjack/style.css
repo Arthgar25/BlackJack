@@ -36,3 +36,11 @@
     -fx-font-size: 20px;
     -fx-font-weight: bold;
 }
+
+.font-white{
+    -fx-text-alignment: center;
+    -fx-font-family: "Georgia", "Times New Roman", serif;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
