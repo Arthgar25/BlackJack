@@ -1,5 +1,6 @@
 package com.example.blackjack.View;
 
+import com.example.blackjack.Model.Carta;
 import com.example.blackjack.Model.Jugador;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -29,7 +30,17 @@ public class Contenedor extends VBox {
         this.getChildren().addAll(nombreJugador,puntajeJugador, cartas);
     }
 
+    public void actualizarManoYCartas(Jugador jugador){
+        actualizarPuntaje(jugador.getPuntaje());
+        cartas.getChildren().clear();
+        for(Carta c: jugador.getMano()){
+            agregarCartas(new CartaView(c));
+        }
+    }
 
+    public void mostrarResultadoFinal(int puntaje, String resultado){
+        puntajeJugador.setText("Puntos: " + puntaje + " - " + resultado);
+    }
     public void agregarCartas(CartaView carta) {
         cartas.getChildren().add(carta);
     }

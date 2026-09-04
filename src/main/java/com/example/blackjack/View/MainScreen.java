@@ -33,7 +33,10 @@ public class MainScreen extends BorderPane {
     private ArrayList<ContenedorJugador> arrayListContenedores = new ArrayList<>();
 
 
-    // Configuracion
+    // Post-Game
+    private VBox botonesFinDeJuego;
+    private QuickButton jugarDeNuevo;
+    private QuickButton botonMenuPrincipal;
 
 
     public MainScreen() {
@@ -65,6 +68,14 @@ public class MainScreen extends BorderPane {
         cuantosJugadores = new Font("Elige los jugadores");
         cuantosJugadores.getStyleClass().add("font-white");
 
+        botonesFinDeJuego = new VBox(10);
+        botonesFinDeJuego.setAlignment(Pos.CENTER);
+
+        jugarDeNuevo = new QuickButton("Jugar de Nuevo");
+        botonMenuPrincipal = new QuickButton("Menu Principal");
+
+        botonesFinDeJuego.getChildren().addAll(jugarDeNuevo, botonMenuPrincipal);
+
         jugadores2 = new QuickButton("2 Jugadores");
         jugadores3 = new QuickButton("3 Jugadores");
         jugadores4 = new QuickButton("4 Jugadores");
@@ -76,9 +87,25 @@ public class MainScreen extends BorderPane {
     }
 
     public void menuPrincipal() {
+        setBottom(null);
+        //ocultarBotonesFinJuego();
         botonesDelMenu.getChildren().clear();
-        botonesDelMenu.getChildren().addAll(botonIniciarJuego,botonReglas,botonConfiguracion,botonSalir);
+        botonesDelMenu.getChildren().addAll(botonIniciarJuego, botonSalir);
         setCenter(botonesDelMenu);
+    }
+
+    public void mostrarBotonesFinJuego(){
+        VBox bottomBox = new VBox(15);
+        bottomBox.setAlignment(Pos.CENTER);
+        bottomBox.getChildren().addAll(hboxJugadores, botonesFinDeJuego);
+        this.setBottom(bottomBox);
+    }
+
+    public void ocultarBotonesFinJuego(){
+        if(botonesFinDeJuego != null){
+            botonesFinDeJuego.getChildren().clear();
+            botonesFinDeJuego.getChildren().addAll(jugarDeNuevo, botonMenuPrincipal);
+        }
     }
 
     public void elegirJugadores() {
@@ -122,4 +149,6 @@ public class MainScreen extends BorderPane {
     public QuickButton getJugadores3() {return jugadores3;}
     public QuickButton getJugadores4() {return jugadores4;}
     public Contenedor getCasa() {return casa;}
+    public QuickButton getBotonMenuPrincipal() {return botonMenuPrincipal;}
+    public QuickButton getJugarDeNuevo() {return jugarDeNuevo;}
 }

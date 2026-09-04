@@ -41,14 +41,48 @@ public class HelloController {
     }
 
     private void actualizarIndicadorTurno(){
-        view.getCasa().actualizarPuntaje(model.getCasa().getPuntaje());
         if(model.turnoDelaCasa()){
-            view.actualizarTurno("Turno de: La Casa");
+            view.getCasa().actualizarManoYCartas(model.getCasa());
+            view.actualizarTurno("Turno de: La Casa - Juego Terminado!");
+            deshabilitarTodosLosBotones();
+            evaluarYMostrarResultados();
         } else{
+            view.getCasa().actualizarPuntaje(model.getCasa().getPuntaje());
             Jugador actual = model.getJugadorActual();
             if (actual != null) {
                 view.actualizarTurno("Turno de: " + actual.getNombre());
+                gestionarBotonesPorturno(actual);
             }
+        }
+    }
+
+    private void evaluarYMostrarResultados(){
+        ArrayList<ContenedorJugador> contenedores = view.getArrayListContenedores();
+        for (int i = 0; i < contenedores.size(); i++) {
+            Jugador jugador = model.getJugadores().get(i);
+            ContenedorJugador contenedor = contenedores.get(i);
+
+            String resultado = model.evaluarResultado(jugador);
+
+            contenedor.mostrarResultadoFinal(jugador.getPuntaje(), resultado);
+        }
+    }
+
+    private void gestionarBotonesPorturno(Jugador jugadorActual){
+        ArrayList<ContenedorJugador> contenedores = view.getArrayListContenedores();
+        for (int i = 0; i < contenedores.size(); i++) {
+            Jugador jugadorModel = model.getJugadores().get(i);
+            ContenedorJugador contenedorView = contenedores.get(i);
+            boolean esSuTurno = (jugadorModel == jugadorActual);
+            contenedorView.getHitButton().setDisable(!esSuTurno);
+            contenedorView.getStayButton().setDisable(!esSuTurno);
+        }
+    }
+
+    private void deshabilitarTodosLosBotones(){
+        for(ContenedorJugador contenedor : view.getArrayListContenedores()){
+            contenedor.getHitButton().setDisable(true);
+            contenedor.getStayButton().setDisable(true);
         }
     }
 
