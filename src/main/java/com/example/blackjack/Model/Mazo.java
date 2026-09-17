@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Mazo {
+    // Usar Pila
     private ArrayList<CartaInglesa> cartas = new ArrayList<>();
 
     public Mazo() {

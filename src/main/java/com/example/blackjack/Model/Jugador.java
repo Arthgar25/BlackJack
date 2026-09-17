@@ -5,7 +5,9 @@ import java.util.ArrayList;
 
 public class Jugador {
     private String nombre;
+    //Usar pila
     private ArrayList<Carta> mano = new ArrayList<Carta>();
+
     private int puntaje;
     private boolean jugando = false;
 

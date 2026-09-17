@@ -3,6 +3,15 @@ package com.example.blackjack.Model;
 import java.util.ArrayList;
 
 public class BlackJack {
+    /*Los jugadores no se reemplazan porque requieren un recorrido iterativo
+    * sin sacar de la estructura (una consulta) y una pila solo permite
+    * consultar el elemento que esta al tope. Para manejar las acciones de
+    * cada jugador se necesitaria manejar mas de una pila para extraer de
+    * la primera, consultar el siguiente, guardar en otra y luego reordenar
+    * de nuevo en la primera pila para mantener el orden original de los
+    * jugadores.
+    * */
+
     private ArrayList<Jugador> jugadores;
     private Jugador casa;
     private Mazo mazo;
