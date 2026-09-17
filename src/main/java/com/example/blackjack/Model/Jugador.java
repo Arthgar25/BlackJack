@@ -7,7 +7,7 @@ public class Jugador {
     private String nombre;
     //Usar pila
     private ArrayList<Carta> mano = new ArrayList<Carta>();
-
+    private Pila<Carta> manoPila;
     private int puntaje;
     private boolean jugando = false;
 
@@ -15,11 +15,29 @@ public class Jugador {
         jugando = true;
         puntaje = 0;
         this.nombre = nombre;
+        this.manoPila = new Pila<>(10);
     }
 
     public int getPuntaje() {
         int puntaje = 0;
         int aces = 0;
+
+        Pila<Carta> pila = new Pila<>(manoPila.size() > 0 ? manoPila.size() : 10);
+
+        while(manoPila.size() > 0){
+            Carta carta = manoPila.pop();
+            int valor = carta.getValor();
+            if (valor >= 11 && valor <= 13) {
+                puntaje += 10;
+            } else if (valor == 14) {
+                aces++;
+                puntaje += 11;
+            } else {
+                puntaje += valor;
+            }
+            pila.push(carta);
+        }
+
         for(Carta carta : mano){
             int valor = carta.getValor();
             if(valor >= 11 && valor <= 13){
@@ -34,6 +52,10 @@ public class Jugador {
         while(puntaje > 21 && aces > 0){
             puntaje -= 10;
             aces--;
+        }
+
+        while(pila.size() > 0){
+            manoPila.push(pila.pop());
         }
         return puntaje;
     }
