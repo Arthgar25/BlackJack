@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Mazo {
-    // Usar Pila
-    private ArrayList<CartaInglesa> cartas = new ArrayList<>();
     private Pila<CartaInglesa> cartasPila;
     public Mazo() {
         cartasPila = new Pila<>(52);
@@ -23,19 +21,11 @@ public class Mazo {
      * Obtiene todas las cartas del mazo.
      * @return
      */
-    public ArrayList<CartaInglesa> getCartas() {
-        return cartas;
-    }
+
     public Pila<CartaInglesa> getCartasPila() {
         return cartasPila;
     }
 
-    public CartaInglesa obtenerUnaCarta() {
-        if (cartas.size() > 0) {
-            return cartas.remove(0);
-        }
-        return null;
-    }
     public CartaInglesa obtenerUnaCartaPila() {
         if (cartasPila.size() > 0) {
             return cartasPila.pop();
@@ -82,8 +72,8 @@ public class Mazo {
     @Override
     public String toString() {
         ArrayList<CartaInglesa> lista = new ArrayList<>();
-        Pila<CartaInglesa> aux = new Pila<>(cartas.size() > 0 ? cartas.size() : 10);
-        while(cartas.size() > 0) {
+        Pila<CartaInglesa> aux = new Pila<>(cartasPila.size() > 0 ? cartasPila.size() : 10);
+        while(cartasPila.size() > 0) {
             aux.push(cartasPila.pop());
         }
         while(aux.size() > 0) {

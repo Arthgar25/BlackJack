@@ -33,7 +33,7 @@ public class Contenedor extends VBox {
     public void actualizarManoYCartas(Jugador jugador){
         actualizarPuntaje(jugador.getPuntaje());
         cartas.getChildren().clear();
-        for(Carta c: jugador.getMano()){
+        for(Carta c: jugador.getCartasParaVista()){
             agregarCartas(new CartaView(c));
         }
     }

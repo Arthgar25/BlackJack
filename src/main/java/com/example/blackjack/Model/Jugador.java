@@ -5,8 +5,6 @@ import java.util.ArrayList;
 
 public class Jugador {
     private String nombre;
-    //Usar pila
-    private ArrayList<Carta> mano = new ArrayList<Carta>();
     private Pila<Carta> manoPila;
     private int puntaje;
     private boolean jugando = false;
@@ -38,17 +36,6 @@ public class Jugador {
             pila.push(carta);
         }
 
-        for(Carta carta : mano){
-            int valor = carta.getValor();
-            if(valor >= 11 && valor <= 13){
-                puntaje += 10;
-            } else if(valor == 14){
-                aces++;
-                puntaje += 11;
-            } else{
-                puntaje += valor;
-            }
-        }
         while(puntaje > 21 && aces > 0){
             puntaje -= 10;
             aces--;
@@ -62,16 +49,12 @@ public class Jugador {
 
     public boolean esBust(){return getPuntaje() > 21;}
     public void reiniciarMano(){
-        mano.clear();
-        setPuntaje(0);
-
         while (manoPila.size() > 0){
             manoPila.pop();
         }
         this.puntaje = 0;
     }
     public void agregarCarta(Carta carta){
-        mano.add(carta);
         manoPila.push(carta);
     }
 
@@ -79,17 +62,8 @@ public class Jugador {
         return manoPila.pop();
     }
 
-    public ArrayList<Carta> getMano() {
-        return mano;
-    }
-
     public Pila<Carta> getManoPila() {
         return manoPila;
-    }
-
-    public void setMano(ArrayList<Carta> mano) {
-
-        this.mano = mano;
     }
 
     public ArrayList<Carta> getCartasParaVista(){

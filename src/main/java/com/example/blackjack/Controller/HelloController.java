@@ -34,7 +34,6 @@ public class HelloController {
     }
 
     private void reiniciarRonda() {
-        model.getMazo().getCartas().clear();
         model.getMazo().llenar();
         model.getMazo().mezclar();
         model.reiniciarRonda();

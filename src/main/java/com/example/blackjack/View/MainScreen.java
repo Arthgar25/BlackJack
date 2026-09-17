@@ -121,7 +121,7 @@ public class MainScreen extends BorderPane {
         this.setCenter(null);
 
         casa = new Contenedor(casaModel);
-        for(Carta carta : casaModel.getMano()){
+        for(Carta carta : casaModel.getCartasParaVista()){
             casa.agregarCartas(new CartaView(carta));
         }
         setCenter(casa);
@@ -131,7 +131,7 @@ public class MainScreen extends BorderPane {
 
         for(Jugador jugador : jugadores) {
             ContenedorJugador contenedorJugador = new ContenedorJugador(jugador);
-            for(Carta carta : jugador.getMano()){
+            for(Carta carta : jugador.getCartasParaVista()){
                 contenedorJugador.agregarCartas(new CartaView(carta));
             }
             contenedorJugador.actualizarPuntaje(jugador.getPuntaje());

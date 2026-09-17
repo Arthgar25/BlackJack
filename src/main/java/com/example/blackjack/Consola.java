@@ -13,16 +13,16 @@ public class Consola {
         while(true){
 
             iniciarJuego(jugador, casa, mazo);
-            System.out.println(jugador.getMano());
-            System.out.println(casa.getMano());
+//            System.out.println(jugador.getMano());
+//            System.out.println(casa.getMano());
             break;
         }
     }
 
     public static void iniciarJuego(Jugador jugador, Jugador casa, Mazo mazo) {
-        jugador.agregarCarta(mazo.obtenerUnaCarta());
-        jugador.agregarCarta(mazo.obtenerUnaCarta());
-        casa.agregarCarta(mazo.obtenerUnaCarta());
-        casa.agregarCarta(mazo.obtenerUnaCarta());
+//        jugador.agregarCarta(mazo.obtenerUnaCarta());
+//        jugador.agregarCarta(mazo.obtenerUnaCarta());
+//        casa.agregarCarta(mazo.obtenerUnaCarta());
+//        casa.agregarCarta(mazo.obtenerUnaCarta());
     }
 }

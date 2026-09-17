@@ -30,9 +30,9 @@ public class BlackJack {
         }
         casa.reiniciarMano();
         for(int i = 0; i < 2; i++){
-            casa.agregarCarta(mazo.obtenerUnaCarta());
+            casa.agregarCarta(mazo.obtenerUnaCartaPila());
             for(Jugador jugador : jugadores){
-                jugador.agregarCarta(mazo.obtenerUnaCarta());
+                jugador.agregarCarta(mazo.obtenerUnaCartaPila());
             }
         }
 
@@ -42,7 +42,7 @@ public class BlackJack {
     public CartaInglesa pedirCarta(){
         Jugador jugadorActual = getJugadorActual();
         if(jugadorActual != null && jugadorActual.isJugando()){
-            CartaInglesa carta = mazo.obtenerUnaCarta();
+            CartaInglesa carta = mazo.obtenerUnaCartaPila();
             jugadorActual.agregarCarta(carta);
             if(jugadorActual.getPuntaje() >= 21){
                 plantarse();
@@ -69,7 +69,7 @@ public class BlackJack {
 
     public void jugarCasa(){
         while(casa.getPuntaje() < 17){
-            casa.agregarCarta(mazo.obtenerUnaCarta());
+            casa.agregarCarta(mazo.obtenerUnaCartaPila());
         }
         casa.setJugando(false);
     }
