@@ -87,7 +87,7 @@ public class BlackJack {
             casa.agregarCarta(mazo.obtenerUnaCartaPila());
         }
         casa.setJugando(false);
-        finalizarRonda()
+        finalizarRonda();
     }
 
     public void finalizarRonda(){
@@ -145,6 +145,29 @@ public class BlackJack {
         casa.reiniciarMano();
         casa.setJugando(true);
         repartir();
+    }
+    
+    public boolean deshacerUltimoMovimiento(){
+        if(!rondaActiva || historial.size() == 0){
+            return false;
+        }
+        Movimiento ultimoMovimiento = historial.pop();
+        Jugador jugador = ultimoMovimiento.getJugador();
+        if("PEDIR_CARTA".equals(ultimoMovimiento.getTipoAccion())){
+            CartaInglesa cartaDevuelta = ultimoMovimiento.getCarta();
+            jugador.removerUltimaCarta();
+            mazo.getCartasPila().push(cartaDevuelta);
+            jugador.setJugando(true);
+        } else if ("PLANTARSE".equals(ultimoMovimiento.getTipoAccion())) {
+            for (int i = 0; i < jugadores.size(); i++) {
+                if(jugadores.get(i).equals(jugador)){
+                    turnoActualIndex = i;
+                    break;
+                }
+            }
+            jugador.setJugando(true);
+        }
+        return true;
     }
 
     public Jugador getCasa(){
