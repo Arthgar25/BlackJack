@@ -11,8 +11,9 @@ import java.util.Collections;
 public class Mazo {
     // Usar Pila
     private ArrayList<CartaInglesa> cartas = new ArrayList<>();
-
+    private Pila<CartaInglesa> cartasPila;
     public Mazo() {
+        cartasPila = new Pila<>(52);
         llenar(); // crea todas las cartas, excluyendo Jokers
         mezclar();
     }
@@ -24,10 +25,19 @@ public class Mazo {
     public ArrayList<CartaInglesa> getCartas() {
         return cartas;
     }
+    public Pila<CartaInglesa> getCartasPila() {
+        return cartasPila;
+    }
 
     public CartaInglesa obtenerUnaCarta() {
         if (cartas.size() > 0) {
             return cartas.remove(0);
+        }
+        return null;
+    }
+    public CartaInglesa obtenerUnaCartaPila() {
+        if (cartasPila.size() > 0) {
+            return cartasPila.pop();
         }
         return null;
     }
