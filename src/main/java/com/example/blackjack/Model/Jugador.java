@@ -64,15 +64,46 @@ public class Jugador {
     public void reiniciarMano(){
         mano.clear();
         setPuntaje(0);
+
+        while (manoPila.size() > 0){
+            manoPila.pop();
+        }
+        this.puntaje = 0;
     }
     public void agregarCarta(Carta carta){
         mano.add(carta);
+        manoPila.push(carta);
     }
+
+    public Carta removerUltimaCarta(){
+        return manoPila.pop();
+    }
+
     public ArrayList<Carta> getMano() {
         return mano;
     }
+
+    public Pila<Carta> getManoPila() {
+        return manoPila;
+    }
+
     public void setMano(ArrayList<Carta> mano) {
+
         this.mano = mano;
+    }
+
+    public ArrayList<Carta> getCartasParaVista(){
+        ArrayList<Carta> lista = new ArrayList<>();
+        Pila<Carta> aux = new Pila<>(manoPila.size() > 0 ? manoPila.size() : 10);
+        while(manoPila.size() > 0){
+            aux.push(manoPila.pop());
+        }
+        while(aux.size() > 0){
+            Carta carta = aux.pop();
+            lista.add(carta);
+            manoPila.push(carta);
+        }
+        return lista;
     }
     public void setPuntaje(int puntaje) {
         this.puntaje+=puntaje;
