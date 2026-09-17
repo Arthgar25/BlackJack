@@ -15,18 +15,23 @@ public class BlackJack {
     private Jugador casa;
     private Mazo mazo;
     private int turnoActualIndex;
+    private boolean rondaActiva;
 
     //Pila para el undo
-    private Pila<Movimiento> historial = new Pila<>(50);
+    private Pila<Movimiento> historial;
 
     public BlackJack() {
         mazo = new Mazo();
         jugadores = new ArrayList<>();
         casa = new Jugador("Casa");
         turnoActualIndex = 0;
+        historial = new Pila<>(30);
+        rondaActiva = true;
     }
 
     public void repartir(){
+
+        vaciarHistorial();
         for(Jugador jugador : jugadores){
             jugador.reiniciarMano();
         }
@@ -39,15 +44,22 @@ public class BlackJack {
         }
 
         turnoActualIndex = 0;
+        rondaActiva = true;
     }
 
     public CartaInglesa pedirCarta(){
+        if(!rondaActiva || turnoDelaCasa()){
+            return null;
+        }
         Jugador jugadorActual = getJugadorActual();
         if(jugadorActual != null && jugadorActual.isJugando()){
             CartaInglesa carta = mazo.obtenerUnaCartaPila();
-            jugadorActual.agregarCarta(carta);
-            if(jugadorActual.getPuntaje() >= 21){
-                plantarse();
+            if(carta != null) {
+                jugadorActual.agregarCarta(carta);
+                historial.push(new Movimiento(jugadorActual, carta, "PEDIR_CARTA"));
+                if (jugadorActual.getPuntaje() >= 21) {
+                    plantarse();
+                }
             }
             return carta;
         }
@@ -56,7 +68,8 @@ public class BlackJack {
 
     public void plantarse(){
         Jugador jugadorActual = getJugadorActual();
-        if(jugadorActual != null){
+        if(jugadorActual != null && rondaActiva){
+            historial.push(new Movimiento(jugadorActual, null, "PLANTARSE"));
             jugadorActual.setJugando(false);
             avanzarTurno();
         }
@@ -74,6 +87,18 @@ public class BlackJack {
             casa.agregarCarta(mazo.obtenerUnaCartaPila());
         }
         casa.setJugando(false);
+        finalizarRonda()
+    }
+
+    public void finalizarRonda(){
+        rondaActiva = false;
+        vaciarHistorial();
+    }
+
+    private void vaciarHistorial(){
+        while (historial.size() > 0){
+            historial.pop();
+        }
     }
 
     public String evaluarResultado(Jugador jugador){
@@ -109,6 +134,7 @@ public class BlackJack {
         }
         casa.reiniciarMano();
         turnoActualIndex = 0;
+        vaciarHistorial();
     }
 
     public void reiniciarRonda(){
@@ -129,5 +155,12 @@ public class BlackJack {
     }
     public Mazo getMazo(){
         return mazo;
+    }
+
+    public Pila<Movimiento> getHistorial(){
+        return historial;
+    }
+    public boolean isRondaActiva(){
+        return rondaActiva;
     }
 }
