@@ -11,11 +11,13 @@ public class BlackJack {
     * de nuevo en la primera pila para mantener el orden original de los
     * jugadores.
     * */
-
     private ArrayList<Jugador> jugadores;
     private Jugador casa;
     private Mazo mazo;
     private int turnoActualIndex;
+
+    //Pila para el undo
+    private Pila<Movimiento> historial = new Pila<>(50);
 
     public BlackJack() {
         mazo = new Mazo();
